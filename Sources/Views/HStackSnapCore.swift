@@ -111,9 +111,9 @@ public struct HStackSnapCore<Content: View>: View {
                 for (_, offset) in snapLocations {
                     var tempIndex = snapLocations.map { $0.value }.sorted(by: { $0 > $1 })
                         .firstIndex(of: offset) ?? 0
-                    var punishmentForSameCard = 1
+                    var punishmentForSameCard = 1.0
                     if tempIndex == previouslySentIndex {
-                        punishmentForSameCard = 3
+                        punishmentForSameCard = 3.0
                     }
                     if abs(offset - currOffset) * punishmentForSameCard < abs(closestSnapLocation - currOffset) {
                         closestSnapLocation = offset
