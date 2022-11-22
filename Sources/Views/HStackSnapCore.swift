@@ -102,20 +102,17 @@ public struct HStackSnapCore<Content: View>: View {
         DragGesture()
             .onChanged { gesture in
                 self.scrollOffset = gesture.translation.width + prevScrollOffset
-            }.onEnded { _ in
-
-                let currOffset = scrollOffset
+            }.onEnded { gesture in
+                let velocity = CGSize(
+                    width:  value.predictedEndLocation.x - value.location.x,
+                    height: value.predictedEndLocation.y - value.location.y)
+                print(velocity.width)
+                let currOffset = scrollOffset * velocity.width
                 var closestSnapLocation: CGFloat = snapLocations.first?.value ?? targetOffset
 
                 // Calculate closest snap location
                 for (_, offset) in snapLocations {
-                    var tempIndex = snapLocations.map { $0.value }.sorted(by: { $0 > $1 })
-                        .firstIndex(of: offset) ?? 0
-                    var punishmentForSameCard = 1.0
-                    if tempIndex == previouslySentIndex {
-                        punishmentForSameCard = 3.0
-                    }
-                    if abs(offset - currOffset) * punishmentForSameCard < abs(closestSnapLocation - currOffset) {
+                    if abs(offset - currOffset) < abs(closestSnapLocation - currOffset) {
                         closestSnapLocation = offset
                     }
                 }
