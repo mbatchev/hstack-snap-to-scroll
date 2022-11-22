@@ -109,7 +109,12 @@ public struct HStackSnapCore<Content: View>: View {
 
                 // Calculate closest snap location
                 for (_, offset) in snapLocations {
-                    if abs(offset - currOffset) < abs(closestSnapLocation - currOffset) * 10 {
+                    let tempIndex = snapLocations.map { $0.value }.sorted(by: { $0 > $1 })
+                        .firstIndex(of: offset) ?? 0
+                    if tempIndex == previouslySentIndex {
+                        print("HELLOOO")
+                    }
+                    if abs(offset - currOffset) < abs(closestSnapLocation - currOffset) {
                         closestSnapLocation = offset
                     }
                 }
