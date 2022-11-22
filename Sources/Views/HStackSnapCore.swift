@@ -107,7 +107,7 @@ public struct HStackSnapCore<Content: View>: View {
                     width:  gesture.predictedEndLocation.x - gesture.location.x,
                     height: gesture.predictedEndLocation.y - gesture.location.y)
                 print( max(sqrt(abs(velocity.width))/14.0, 1))
-                let currOffset = scrollOffset * max(sqrt(abs(velocity.width))/14.0, 1.0)
+                var currOffset = scrollOffset * max(sqrt(abs(velocity.width))/14.0, 1.0)
                 if velocity.width < 0 {
                     currOffset = currOffset * -1.0
                 }
