@@ -101,7 +101,7 @@ public struct HStackSnapCore<Content: View>: View {
     var snapDrag: some Gesture {
         DragGesture()
             .onChanged { gesture in
-                self.scrollOffset = gesture.translation.width * 1.5 + prevScrollOffset
+                self.scrollOffset = gesture.translation.width + prevScrollOffset
             }.onEnded { _ in
 
                 let currOffset = scrollOffset
@@ -109,7 +109,7 @@ public struct HStackSnapCore<Content: View>: View {
 
                 // Calculate closest snap location
                 for (_, offset) in snapLocations {
-                    if abs(offset - currOffset) < abs(closestSnapLocation - currOffset) {
+                    if abs(offset - currOffset) * 1.5 < abs(closestSnapLocation - currOffset) {
                         closestSnapLocation = offset
                     }
                 }
