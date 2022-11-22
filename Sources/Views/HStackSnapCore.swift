@@ -115,7 +115,7 @@ public struct HStackSnapCore<Content: View>: View {
                     if tempIndex == previouslySentIndex {
                         punishmentForSameCard = 3
                     }
-                    if abs(offset - currOffset) * 3 < abs(closestSnapLocation - currOffset) {
+                    if abs(offset - currOffset) * punishmentForSameCard < abs(closestSnapLocation - currOffset) {
                         closestSnapLocation = offset
                     }
                 }
