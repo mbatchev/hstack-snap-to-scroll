@@ -102,7 +102,7 @@ public struct HStackSnapCore<Content: View>: View {
         DragGesture()
             .onChanged { gesture in
 
-                self.scrollOffset = gesture.translation.width + prevScrollOffset
+                self.scrollOffset = gesture.translation.width * 2 + prevScrollOffset
             }.onEnded { _ in
 
                 let currOffset = scrollOffset
