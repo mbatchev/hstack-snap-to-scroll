@@ -108,7 +108,7 @@ public struct HStackSnapCore<Content: View>: View {
                     width:  gesture.predictedEndLocation.x - gesture.location.x,
                     height: gesture.predictedEndLocation.y - gesture.location.y)
                 print( max(sqrt(abs(velocity.width))/10.0, 1.0))
-                let currOffset = (scrollOffset - prevScrollOffset)* max(sqrt(abs(velocity.width))/10.0, 1.0) + prevScrollOffset
+                let currOffset = (scrollOffset - prevScrollOffset) * max(sqrt(abs(velocity.width))/10.0, 1.0) + prevScrollOffset
                 var closestSnapLocation: CGFloat = snapLocations.first?.value ?? targetOffset
 
                 // Calculate closest snap location
